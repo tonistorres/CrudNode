@@ -59,14 +59,8 @@ git remote add origin git@github.com:tonistorres/CrudNodePinar.git
 npm i git-commit-msg-linter -D
 ```
 
-- [x] - Customizando git log;
+- [x] - Criar uma branch tonis-torres-crud-node;
 
 ```console
-git log --pretty=format:'%C(blue)%h %C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)cr'
-```
-
-- [x] - Criar uma branch tonis-torres-docs-readme;
-
-```console
-git checkout -b tonis-torres-docs-readme;
+git checkout -b tonis-torres-crud-node;
 ```
