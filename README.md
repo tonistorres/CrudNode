@@ -130,4 +130,9 @@ git tag -a "nome_tag" -m"" id
   > Analise os corpos de solicitação de entrada em um middleware antes de seus manipuladores,
   > disponíveis na propriedade req.body.
 - [Body-Parse](https://www.npmjs.com/package/body-parser)
+
+- [x] - npm i http-status-codes 
+  > códigos de status http constantes enumerando os códigos de status HTTP.
+  > Baseado na API Java Apache HttpStatus.
+  - [status-codes](https://www.npmjs.com/package/http-status-codes)
   
