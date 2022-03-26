@@ -1,4 +1,9 @@
-{
+{  
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "devDependencies": {
     "git-commit-msg-linter": "^4.1.1",
     "nodemon": "^2.0.15"
