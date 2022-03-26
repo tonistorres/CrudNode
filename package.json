@@ -1,5 +1,6 @@
 {
   "devDependencies": {
-    "git-commit-msg-linter": "^4.1.1"
+    "git-commit-msg-linter": "^4.1.1",
+    "nodemon": "^2.0.15"
   }
 }
