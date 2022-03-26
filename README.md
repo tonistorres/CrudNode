@@ -64,3 +64,17 @@ npm i git-commit-msg-linter -D
 ```console
 git checkout -b tonis-torres-crud-node;
 ```
+> Alguns comandos git util no desenvolvimento:
+
+```console
+git status
+git add .
+git commit -m""
+git push
+git push -u origin nome_branch
+git pull
+git log 
+git log --oneline
+git tag "nome_tag" -m"" 
+git tag -a "nome_tag" -m"" id
+```
