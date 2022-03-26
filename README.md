@@ -8,9 +8,7 @@
 > consistência e integridade das informações.  
 > [Fonte de Informação: Blog byTrybe ](https://blog.betrybe.com/tecnologia/crud-operacoes-basicas/);
 
-### Setup da Aplicação:
-
-#### 1 - Passos Iniciais (check List):
+#### 1 - Setup inicial da aplicação:
 
 - [x] Criando uma Pastas CrudeNode;
 
@@ -64,3 +62,49 @@ npm i git-commit-msg-linter -D
 ```console
 git checkout -b tonis-torres-crud-node;
 ```
+> Alguns comandos git util no desenvolvimento:
+
+```console
+git status
+git add .
+git commit -m""
+git push
+git push -u origin nome_branch
+git pull
+git log 
+git log --oneline
+git tag "nome_tag" -m"" 
+git tag -a "nome_tag" -m"" id
+```
+
+
+#### 2 - Ferramentas e pacotes que utilizaremos no desenvolvimento da aplicação:
+
+- [x] - FrameWork Express ;
+- [x] - nodemom;
+- [x] - Mysql;
+- [x] - MySQL Workbench (Ferramenta Gráfica);
+- [x] - Client que faz a conexão do Node com o Mysql (msql2); 
+- [x] - body-parse;
+
+#### 3 - Comandos utilizados na instalação:
+
+- [x] - npm i nodemon -D;
+- [Link Pacote Nodemon ](https://duckduckgo.com)
+  > Obs.: O D MAIÚSCULO é informa que é uma forma contraída de dizer que é uma Dependência de 
+  > Desenvolvimento, ou seja, na hora de subir para a produção essa dependência não tem importancia para 
+  > o bom funcionamento da minha aplicação, essa dependencia é somente para testes no momento do 
+  > desenvolvimento.
+ 
+- [x] - npm i express;
+- [Link Express ](https://www.npmjs.com/package/express)
+ 
+- [x] - npm install --save mysql2
+ > Client Utilizado para fazer a conexão de uma palicação Node Com Mysql (connector);
+ 
+- [x] - npm i body-parser
+  > Middleware de análise do corpo do Node.js.
+  > Analise os corpos de solicitação de entrada em um middleware antes de seus manipuladores,
+  > disponíveis na propriedade req.body.
+- [Body-Parse](https://www.npmjs.com/package/body-parser)
+  
