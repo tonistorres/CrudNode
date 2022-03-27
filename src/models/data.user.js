@@ -1,20 +1,55 @@
-/* nessa camada iremo trabalhar toda persistencia (manipulação) dos dados
-Camada mais próxima do banco de dados
-*/
+const mysql = require("mysql2/promise");
+const { connection } = require("./mysql-connection");
 
-const mysql = require('mysql2/promise');
-const { connection } = require('./mysql-connection');
-
-// buscar todos registros na base de dados    
 const getAllModel = async () => {
-    const [ users ]= await connection.execute('SELECT * FROM inovec87_sisseg.tbusuarios');
-    return users;
-}
- 
+  const [users] = await connection.execute(
+    "SELECT * FROM inovec87_sisseg.tbusuarios"
+  );
+  return users;
+};
 
-
-
+const createModel = async ({
+  loginValidado,
+  senhaValidada,
+  usuario,
+  banco_dados,
+  url,
+  celular_principal,
+  cpfValidado,
+  email_principal,
+  perfil,
+}) => {
+  const [{ insertId }] = await connection.execute(
+    `INSERT INTO tbusuarios ( login, senha, usuario, banco_dados, url,
+        celular_principal, CPF, email_principal, perfil
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+      loginValidado,
+      senhaValidada,
+      usuario,
+      banco_dados,
+      url,
+      celular_principal,
+      cpfValidado,
+      email_principal,
+      perfil,
+    ]
+  );
+  return {
+    id: insertId,
+    loginValidado,
+    senhaValidada,
+    usuario,
+    banco_dados,
+    url,
+    celular_principal,
+    cpfValidado,
+    email_principal,
+    perfil,
+  };
+};
 
 module.exports = {
-    getAllModel,
-}
+  getAllModel,
+  createModel,
+};
