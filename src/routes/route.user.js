@@ -4,5 +4,6 @@ const router = express.Router();
 
 router
   .get('/', UserController.getAllController)
+  .post('/', UserController.createController)
 
 module.exports = router;
