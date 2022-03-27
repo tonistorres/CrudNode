@@ -11,13 +11,13 @@ const getAllModel = async () => {
 const createModel = async ({
   loginValidado,
   senhaValidada,
-  usuario,
-  banco_dados,
-  url,
+  usuarioTratado,
+  bancoDBTratado,
+  urlTratada,
   celular_principal,
   cpfValidado,
-  email_principal,
-  perfil,
+  emailTratado,
+  perfilTratado,
 }) => {
   const [{ insertId }] = await connection.execute(
     `INSERT INTO tbusuarios ( login, senha, usuario, banco_dados, url,
@@ -26,26 +26,26 @@ const createModel = async ({
     [
       loginValidado,
       senhaValidada,
-      usuario,
-      banco_dados,
-      url,
+      usuarioTratado,
+      bancoDBTratado,
+      urlTratada,
       celular_principal,
       cpfValidado,
-      email_principal,
-      perfil,
+      emailTratado,
+      perfilTratado,
     ]
   );
   return {
     id: insertId,
     loginValidado,
     senhaValidada,
-    usuario,
-    banco_dados,
-    url,
+    usuarioTratado,
+    bancoDBTratado,
+    urlTratada,
     celular_principal,
     cpfValidado,
-    email_principal,
-    perfil,
+    emailTratado,
+    perfilTratado,
   };
 };
 
