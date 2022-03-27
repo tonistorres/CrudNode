@@ -1,3 +1,4 @@
+![CRUD NODE/EXPRESS](./crud.jpg)
 ## Projeto de uma Aplicação Back-End (CRUD) - seguindo as métricas de engenharia de software:
 ### O que um CRUD?
 > Nas manipulações de registros realizadas diretamente em banco de dados ou em plataformas
