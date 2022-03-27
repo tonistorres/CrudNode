@@ -1,10 +1,13 @@
+const { refinandoStringsDB, retiraTodosEspacosEntrePalavras } = require('../util/refinandoStringsDB');
+const { slugify } = require('../util/retiraAcentos');
+
 const senhaPolida = (senha) => {
   try {
     if (senha && senha.length > 3 && typeof senha === "string") {
 
       let flagValidaSenha = true;
 
-      const senhaPolida = senha.trim().toUpperCase();
+      const senhaPolida =  etiraTodosEspacosEntrePalavras(refinandoStringsDB(senha));
 
       if (senhaPolida.length <= 3) {
         flagValidaSenha = false;

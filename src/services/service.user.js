@@ -1,34 +1,44 @@
-/** Nessa camada iremos trabalhar toda regra de negocio da aplicação
- * OBSERVAÇAO: Nessa cada irei fazer todos os tratamentos de erros
- */
 const UserModel = require("../models/data.user");
 const fs = require('fs').promises;
-const { StatusCodes } = require("http-status-codes");
 const { loginPolido } = require("../middleware/middlewareLogin");
 const { senhaPolida } =require('../middleware/middlewareSenha');
 const { validarCPF } = require('../util/validaCPF');
+const { 
+  refinandoStringsDB, 
+  retiraTodosEspacosEntrePalavras,
+  retiraEspacosMultiplosFixaOne,
+  refiandoStringDBtoLowerCase 
+} = require('../util/refinandoStringsDB');
+const { slugify } = require('../util/retiraAcentos');
 
 const createService = async (user) => {
   try {
     const { login, senha, usuario, banco_dados, url, celular_principal, CPF, email_principal, 
-    perfil} = user;
-    
+    perfil} = user;    
     const loginValidado = loginPolido(login);
     const senhaValidada = senhaPolida(senha);
+    const usuarioTratado = retiraEspacosMultiplosFixaOne(usuario); 
+    const bancoDBTratado = retiraTodosEspacosEntrePalavras(refiandoStringDBtoLowerCase(banco_dados));
+    const urlTratada = retiraTodosEspacosEntrePalavras(refiandoStringDBtoLowerCase(url));
+    const emailTratado = retiraTodosEspacosEntrePalavras(refiandoStringDBtoLowerCase(email_principal));
+    const perfilTratado = slugify(retiraTodosEspacosEntrePalavras(refinandoStringsDB(perfil)));  
     const cpfValidado = validarCPF(CPF);
+
+    
   
     if(loginValidado !== false && senhaValidada !== false && cpfValidado !== false){
 
       const created = await UserModel.createModel({
         loginValidado, 
         senhaValidada, 
-        usuario, 
-        banco_dados,
-        url, 
+        usuarioTratado, 
+        bancoDBTratado,
+        urlTratada, 
         celular_principal, 
         cpfValidado,
-        email_principal,
-        perfil});
+        emailTratado,
+        perfilTratado
+      });
       // fs.appendFile("inbox.txt", `Login: ${loginValidado}`);
       return created;      
     }
@@ -38,16 +48,11 @@ const createService = async (user) => {
   }
 };
 
-const getAllService = async (res) => {
+const getAllService = async () => {
   const users = await UserModel.getAllModel();
-
-  /* Aplicando regra de negocio no end-point:
-[x] caso não retorne nenhum usuário retorne
-uma mensagem contendo array vazio */
-  if (!users) {
-    return res.status(StatusCodes.OK).json({ menssagem: [] });
-  }
-  return users;
+  if (users) {
+    return users;  
+  }  
 };
 
 module.exports = {

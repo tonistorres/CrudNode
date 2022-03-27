@@ -4,7 +4,10 @@ const { StatusCodes } = require('http-status-codes');
 const getAllController = async (_req, res) => {
     try {
       const users = await UserService.getAllService(res);
-      return res.status(StatusCodes.OK).json(users);
+      if(users){
+        return res.status(StatusCodes.OK).json(users);
+      }
+      return res.status(StatusCodes.OK).send([]);
     } catch (error) {
       console.log(error);
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no Servidor'});
