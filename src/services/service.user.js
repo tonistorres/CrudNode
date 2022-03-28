@@ -48,6 +48,10 @@ const createService = async (user) => {
   }
 };
 
+const deleteByIdService = async (id) =>{
+await UserModel.deleteByIdModel(parseInt(id));
+}
+
 const getAllService = async () => {
   const users = await UserModel.getAllModel();
   if (users) {
@@ -58,4 +62,5 @@ const getAllService = async () => {
 module.exports = {
   getAllService,
   createService,
+  deleteByIdService,
 };
