@@ -1,12 +1,9 @@
 const mysql = require("mysql2/promise");
 const { connection } = require("./mysql-connection");
 
-const getAllModel = async () => {
-  const [users] = await connection.execute(
-    "SELECT * FROM inovec87_sisseg.tbusuarios"
-  );
-  return users;
-};
+const deleteByIdModel = async (id) => {
+  await connection.execute('DELETE FROM tbusuarios WHERE iduser = ?', [id]);
+}
 
 const createModel = async ({
   loginValidado,
@@ -49,7 +46,18 @@ const createModel = async ({
   };
 };
 
+
+const getAllModel = async () => {
+  const [users] = await connection.execute(
+    "SELECT * FROM inovec87_sisseg.tbusuarios"
+  );
+  return users;
+};
+
+
 module.exports = {
   getAllModel,
   createModel,
+  deleteByIdModel,
 };
+

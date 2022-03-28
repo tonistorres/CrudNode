@@ -7,7 +7,7 @@ const senhaPolida = (senha) => {
 
       let flagValidaSenha = true;
 
-      const senhaPolida =  etiraTodosEspacosEntrePalavras(refinandoStringsDB(senha));
+      const senhaPolida =  retiraTodosEspacosEntrePalavras(refinandoStringsDB(senha));
 
       if (senhaPolida.length <= 3) {
         flagValidaSenha = false;

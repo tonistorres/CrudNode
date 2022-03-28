@@ -1,6 +1,17 @@
 const UserService  = require('../services/service.user');
 const { StatusCodes } = require('http-status-codes');
 
+const deleteByIdController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await UserService.deleteByIdService(id);
+    return res.status(StatusCodes.OK).json({menssagem:"excluído com sucesso"});
+  } catch (error) {
+    console.log(error);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no Servidor'});
+  }
+}
+
 const getAllController = async (_req, res) => {
     try {
       const users = await UserService.getAllService(res);
@@ -30,4 +41,5 @@ const createController = async (req, res) => {
 module.exports = { 
   getAllController,
   createController, 
+  deleteByIdController
 }
