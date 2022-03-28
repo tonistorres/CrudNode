@@ -1,5 +1,10 @@
 ![CRUD NODE/EXPRESS](./crud.jpg)
-## Projeto de uma Aplicação Back-End (CRUD) - seguindo as métricas de engenharia de software:
+## Projeto de uma Aplicação(API) Back-End (CRUD) - seguindo as métricas de engenharia de software:
+
+### o que é uma API?
+> Uma API é um conjunto de rotinas, protocolos e ferramentas para construir aplicações.
+> [Fonte: Stack OverFlow ](https://pt.stackoverflow.com/questions/86399/qual-a-diferen%C3%A7a-entre-endpoint-e-api);
+
 ### O que um CRUD?
 > Nas manipulações de registros realizadas diretamente em banco de dados ou em plataformas
 > desenvolvidas no padrão RESTful, o conceito CRUD estabelece o modelo correto no manuseio
@@ -9,7 +14,7 @@
 > consistência e integridade das informações.  
 > [Fonte de Informação: Blog byTrybe ](https://blog.betrybe.com/tecnologia/crud-operacoes-basicas/);
 
-#### 1 - Setup inicial da aplicação:
+### 1 - Setup inicial da aplicação:
 
 - [x] Criando uma Pastas CrudeNode;
 
@@ -102,7 +107,7 @@ git tag -a "nome_tag" -m"" id
 ```
 
 
-#### 2 - Ferramentas e pacotes que utilizaremos no desenvolvimento da aplicação:
+### 2 - Ferramentas e pacotes que utilizaremos no desenvolvimento da aplicação:
 
 - [x] - FrameWork Express ;
 - [x] - nodemom;
@@ -111,7 +116,7 @@ git tag -a "nome_tag" -m"" id
 - [x] - Client que faz a conexão do Node com o Mysql (msql2); 
 - [x] - body-parse;
 
-#### 3 - Comandos utilizados na instalação:
+### 3 - Comandos utilizados na instalação:
 
 - [x] - npm i nodemon -D;
 - [Link Pacote Nodemon ](https://duckduckgo.com)
@@ -136,4 +141,18 @@ git tag -a "nome_tag" -m"" id
   > códigos de status http constantes enumerando os códigos de status HTTP.
   > Baseado na API Java Apache HttpStatus.
   - [status-codes](https://www.npmjs.com/package/http-status-codes)
-  
+  - 
+### 4- Sobre os  END-POINTS:
+
+#### 4.1 - O que é um End-Point?
+> Um endpoint de um web service é a URL onde seu serviço pode ser acessado por uma aplicação cliente. 
+> [Fonte: Stack OverFlow ](https://pt.stackoverflow.com/questions/86399/qual-a-diferen%C3%A7a-entre-endpoint-e-api);
+
+##### 4.1.1 - End-Point create:
+> Nesta Api o End-Point create foi distribuído em 03(três) camadas (Controller, Service e Model), onde
+> utilizamos conceitos e abstraçẽos de engenharia de software para isolar a lógica de responsábilidades
+> em suas respectivas camadas. A principal funcionalidade desse end-point é criar um usuário novo dentro
+> do banco de dados inovec87_sisseg com ajuda do gerenciador de banco de dados mysql e um client que é um
+> paconte npm mysql2 para fazer a comunicação entre a aplicação node e o mysql. Abaixo segue uma breve
+> descrição de como foi escrito e dividido o código por meio de um gif animator.
+![END-POINT CREATE](./endPointCreated.gif)
