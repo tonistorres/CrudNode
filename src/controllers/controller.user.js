@@ -12,6 +12,20 @@ const deleteByIdController = async (req, res) => {
   }
 }
 
+
+const getByIdController = async (req, res) => {
+  try {
+    const user = await UserService.getByIdService(req.params);
+    if(user){
+      return res.status(StatusCodes.OK).json(user);
+    }
+    return res.status(StatusCodes.OK).json({menssagem:"Usuario não Cadastrado"})
+  } catch (error) {
+    console.log(error);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no Servidor'});
+  }
+}
+
 const getAllController = async (_req, res) => {
     try {
       const users = await UserService.getAllService(res);
@@ -41,5 +55,6 @@ const createController = async (req, res) => {
 module.exports = { 
   getAllController,
   createController, 
-  deleteByIdController
+  deleteByIdController,
+  getByIdController
 }

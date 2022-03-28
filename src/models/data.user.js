@@ -55,9 +55,16 @@ const getAllModel = async () => {
 };
 
 
+const getByIdModel = async (id) => {
+  const [user] = await connection.execute('SELECT * FROM inovec87_sisseg.tbusuarios WHERE iduser = ?', [id]);
+  return user;
+}
+
+
 module.exports = {
   getAllModel,
   createModel,
   deleteByIdModel,
+  getByIdModel,
 };
 

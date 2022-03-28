@@ -59,8 +59,17 @@ const getAllService = async () => {
   }  
 };
 
+const getByIdService = async (requisicao) => {
+const { id } = requisicao;
+const user = await UserModel.getByIdModel(parseInt(id));
+if(user){
+  return user;
+}
+}
+
 module.exports = {
   getAllService,
   createService,
   deleteByIdService,
+  getByIdService,
 };

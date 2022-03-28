@@ -9,8 +9,7 @@ const loginPolido = (login) => {
       const loginPolido = slugify(retiraTodosEspacosEntrePalavras(refinandoStringsDB(login)));
 
       if (loginPolido.length <= 3) {
-        flagValidLogin = false;
-        // return flagValidLogin;
+        flagValidLogin = false;       
       }
 
       if (flagValidLogin) {
