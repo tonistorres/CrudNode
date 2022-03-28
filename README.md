@@ -5,6 +5,7 @@
 > Uma API é um conjunto de rotinas, protocolos e ferramentas para construir aplicações.
 > [Fonte: Stack OverFlow ](https://pt.stackoverflow.com/questions/86399/qual-a-diferen%C3%A7a-entre-endpoint-e-api);
 
+
 ### O que um CRUD?
 > Nas manipulações de registros realizadas diretamente em banco de dados ou em plataformas
 > desenvolvidas no padrão RESTful, o conceito CRUD estabelece o modelo correto no manuseio
@@ -13,6 +14,7 @@
 > relacional (SQL) ou não-relacional (NoSQL), facilitando no processamento dos dados e na 
 > consistência e integridade das informações.  
 > [Fonte de Informação: Blog byTrybe ](https://blog.betrybe.com/tecnologia/crud-operacoes-basicas/);
+
 
 ### 1 - Setup inicial da aplicação:
 
@@ -155,4 +157,5 @@ git tag -a "nome_tag" -m"" id
 > do banco de dados inovec87_sisseg com ajuda do gerenciador de banco de dados mysql e um client que é um
 > paconte npm mysql2 para fazer a comunicação entre a aplicação node e o mysql. Abaixo segue uma breve
 > descrição de como foi escrito e dividido o código por meio de um gif animator.
+
 ![END-POINT CREATE](./endPointCreated.gif)
