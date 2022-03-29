@@ -65,6 +65,7 @@ const user = await UserModel.getByIdModel(parseInt(id));
 if(user){
   return user;
 }
+return {erro: true, codeNumber:404, msg:`não foi encontrado usuaário com id ${ id }` }
 }
 
 module.exports = {

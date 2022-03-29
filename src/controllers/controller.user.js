@@ -1,60 +1,71 @@
-const UserService  = require('../services/service.user');
-const { StatusCodes } = require('http-status-codes');
+const UserService = require("../services/service.user");
+const { StatusCodes } = require("http-status-codes");
 
 const deleteByIdController = async (req, res) => {
   try {
     const { id } = req.params;
     await UserService.deleteByIdService(id);
-    return res.status(StatusCodes.OK).json({menssagem:"excluído com sucesso"});
+    return res
+      .status(StatusCodes.OK)
+      .json({ menssagem: "excluído com sucesso" });
   } catch (error) {
     console.log(error);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no Servidor'});
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Erro no Servidor" });
   }
-}
-
+};
 
 const getByIdController = async (req, res) => {
   try {
     const user = await UserService.getByIdService(req.params);
-    if(user){
-      return res.status(StatusCodes.OK).json(user);
+    if (user.erro) {
+      return res.status(user.codeNumber).json({ menssagem: user.msg });
     }
-    return res.status(StatusCodes.OK).json({menssagem:"Usuario não Cadastrado"})
+    return res.status(StatusCodes.OK).json(user);
   } catch (error) {
     console.log(error);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no Servidor'});
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Erro no Servidor" });
   }
-}
+};
 
 const getAllController = async (_req, res) => {
-    try {
-      const users = await UserService.getAllService(res);
-      if(users){
-        return res.status(StatusCodes.OK).json(users);
-      }
-      return res.status(StatusCodes.OK).send([]);
-    } catch (error) {
-      console.log(error);
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no Servidor'});
+  try {
+    const users = await UserService.getAllService(res);
+    if (users) {
+      return res.status(StatusCodes.OK).json(users);
     }
-}
+    return res.status(StatusCodes.OK).send([]);
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Erro no Servidor" });
+  }
+};
 
 const createController = async (req, res) => {
   try {
     const user = await UserService.createService(req.body);
-    if(user){
+    if (user) {
       return res.status(StatusCodes.CREATED).json(user);
     }
-    return res.status(StatusCodes.OK).json({menssagem:"Não foi possível criar usuário"});
+    return res
+      .status(StatusCodes.OK)
+      .json({ menssagem: "Não foi possível criar usuário" });
   } catch (error) {
     console.log(error);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no Servidor'});
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Erro no Servidor" });
   }
-}
+};
 
-module.exports = { 
+module.exports = {
   getAllController,
-  createController, 
+  createController,
   deleteByIdController,
-  getByIdController
-}
+  getByIdController,
+};
