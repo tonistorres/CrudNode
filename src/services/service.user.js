@@ -1,7 +1,5 @@
 const UserModel = require("../models/data.user");
-const FileSystemFs = require("../FileSystem/fs.ficha.user");
-const { loginPolido } = require("../middleware/middlewareLogin");
-const { senhaPolida } = require("../middleware/middlewareSenha");
+const { loginPolido, senhaPolida } = require("../validations/validation.service.user");
 const { validarCPF } = require("../util/validaCPF");
 const {
   refinandoStringsDB,
@@ -26,26 +24,28 @@ const createService = async (user) => {
       perfil,
     } = user;
     const loginValidado = loginPolido(login);
+
+    if(loginValidado.erro) {
+      return {erro:loginValidado.erro, codeNumber: loginValidado.codeNumber,
+        msg: loginValidado.msg, }
+    }
     const senhaValidada = senhaPolida(senha);
+    if(senhaValidada.erro) { 
+      return {erro:senhaValidada.erro, codeNumber: senhaValidada.codeNumber,
+       msg: senhaValidada.msg, }
+    }
     const usuarioTratado = retiraEspacosMultiplosFixaOne(usuario);
-    const bancoDBTratado = retiraTodosEspacosEntrePalavras(
-      refiandoStringDBtoLowerCase(banco_dados)
-    );
-    const urlTratada = retiraTodosEspacosEntrePalavras(
-      refiandoStringDBtoLowerCase(url)
-    );
-    const emailTratado = retiraTodosEspacosEntrePalavras(
-      refiandoStringDBtoLowerCase(email_principal)
-    );
-    const perfilTratado = slugify(
-      retiraTodosEspacosEntrePalavras(refinandoStringsDB(perfil))
-    );
+    const bancoDBTratado = retiraTodosEspacosEntrePalavras(refiandoStringDBtoLowerCase(banco_dados));
+    const urlTratada = retiraTodosEspacosEntrePalavras(refiandoStringDBtoLowerCase(url));
+    const emailTratado = retiraTodosEspacosEntrePalavras(refiandoStringDBtoLowerCase(email_principal));
+    const perfilTratado = slugify(retiraTodosEspacosEntrePalavras(refinandoStringsDB(perfil)));
     const cpfValidado = validarCPF(CPF);
-    if (
-      loginValidado !== false &&
-      senhaValidada !== false &&
-      cpfValidado !== false
-    ) {
+    
+    if(cpfValidado.erro) { 
+      return {erro:cpfValidado.erro, codeNumber: cpfValidado.codeNumber,
+       msg: cpfValidado.msg,}
+    }
+
       const created = await UserModel.createModel({
         loginValidado,
         senhaValidada,
@@ -58,12 +58,7 @@ const createService = async (user) => {
         perfilTratado,
       });
       return created;
-    }
-    return {
-      erro: true,
-      codeNumber: 404,
-      msg: `Desculpe! O registro não pôde ser inserido no banco`,
-    };
+
   } catch (error) {
     console.log(error);
   }

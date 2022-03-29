@@ -8,7 +8,7 @@ function validarCPF(strCPF) {
     var Resto;
     Soma = 0;
   if (strCPF == "00000000000") {
-    return flagValidaRetornoCPF = false;
+    return {erro:true, codeNumber: 404, msg:"Falha validaçao CPF"};
   }
 
 
@@ -17,7 +17,7 @@ function validarCPF(strCPF) {
 
     if ((Resto == 10) || (Resto == 11))  Resto = 0;
     if (Resto != parseInt(strCPF.substring(9, 10)) ) {
-      return flagValidaRetornoCPF = false;
+      return {erro:true, codeNumber: 404, msg:"Falha validaçao CPF"};
     };
 
   Soma = 0;
@@ -26,7 +26,7 @@ function validarCPF(strCPF) {
 
     if ((Resto == 10) || (Resto == 11))  Resto = 0;
     if (Resto != parseInt(strCPF.substring(10, 11) ) ) {
-      return flagValidaRetornoCPF = false;    
+      return {erro:true, codeNumber: 404, msg:"Falha validaçao CPF"}; 
     };
     if(flagValidaRetornoCPF){
       return strCPF;
