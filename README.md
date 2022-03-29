@@ -139,7 +139,7 @@ git tag -a "nome_tag" -m"" id
   > disponíveis na propriedade req.body.
 - [Body-Parse](https://www.npmjs.com/package/body-parser)
 
-- [x] - npm i http-status-codes 
+- [x] - npm i http-status-codes (OPCIONAL)
   > códigos de status http constantes enumerando os códigos de status HTTP.
   > Baseado na API Java Apache HttpStatus.
   - [status-codes](https://www.npmjs.com/package/http-status-codes)
