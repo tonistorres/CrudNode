@@ -54,9 +54,11 @@ await UserModel.deleteByIdModel(parseInt(id));
 
 const getAllService = async () => {
   const users = await UserModel.getAllModel();
-  if (users) {
-    return users;  
+  console.log(users);
+  if (!users.length ) {
+  return {erro: true, codeNumber:404, msg:`não foi encontrado usuaário cadastrados []` }   
   }  
+  return users; 
 };
 
 const getByIdService = async (requisicao) => {
