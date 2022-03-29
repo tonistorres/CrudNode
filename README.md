@@ -139,7 +139,7 @@ git tag -a "nome_tag" -m"" id
   > disponíveis na propriedade req.body.
 - [Body-Parse](https://www.npmjs.com/package/body-parser)
 
-- [x] - npm i http-status-codes 
+- [x] - npm i http-status-codes (OPCIONAL)
   > códigos de status http constantes enumerando os códigos de status HTTP.
   > Baseado na API Java Apache HttpStatus.
   - [status-codes](https://www.npmjs.com/package/http-status-codes)
@@ -158,4 +158,25 @@ git tag -a "nome_tag" -m"" id
 > paconte npm mysql2 para fazer a comunicação entre a aplicação node e o mysql. Abaixo segue uma breve
 > descrição de como foi escrito e dividido o código por meio de um gif animator.
 
-![END-POINT CREATE](./endPointCreated.gif)
+![END-POINT CREATE](./created.gif)
+
+##### 4.1.2 End-Point delete:
+> O End-Point delete foi distribuído em 03(três) camadas (Controller, Service e Model), 
+> seguindo as mesmas diretrizes e responsabilidades do end-point create acima explicitado.
+
+![END-POINT CREATE](./delete.gif)
+
+
+##### 4.1.2 End-Point getAll (buscar por todos registros):
+> O End-Point getAll foi distribuído em 03(três) camadas (Controller, Service e Model), 
+> seguindo as mesmas métricas acima explicitadas.
+
+![END-POINT CREATE](./getAll.gif)
+
+
+
+##### 4.1.3 End-Point getById (buscar um registros específico):
+> O End-Point getById foi distribuído em 03(três) camadas (Controller, Service e Model), 
+> seguindo as mesmas métricas acima explicitadas.
+
+![END-POINT CREATE](./getById.gif)

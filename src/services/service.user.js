@@ -64,6 +64,8 @@ const createService = async (user) => {
   }
 };
 
+
+
 const deleteByIdService = async (requisicao) => {
   const { id } = requisicao;
   const verificaExiste = await UserModel.getByIdModel(id);
@@ -83,6 +85,9 @@ const deleteByIdService = async (requisicao) => {
   };
 };
 
+
+
+
 const getAllService = async () => {
   const users = await UserModel.getAllModel();
   if (!users.length) {
@@ -94,6 +99,10 @@ const getAllService = async () => {
   }
   return users;
 };
+
+
+
+
 
 const getByIdService = async (requisicao) => {
   const { id } = requisicao;
@@ -112,6 +121,10 @@ const getByIdService = async (requisicao) => {
     msg: `não foi encontrado usuário com id ${id}`,
   };
 };
+
+
+
+
 
 module.exports = {
   getAllService,

@@ -1,14 +1,18 @@
 const UserService = require("../services/service.user");
 
-const deleteByIdController = async (req, res) => {
+
+
+const createController = async (req, res) => {
   try {
-    const userExiste = await UserService.deleteByIdService(req.params);
-    if(userExiste.erro){
-    return res.status(userExiste.codeNumber).json({ menssagem: userExiste.msg });
+    const user = await UserService.createService(req.body);
+    if (user.erro) {
+      return res
+      .status(user.codeNumber)
+      .json({ menssagem: user.msg });  
     }
-    return res
-      .status(userExiste.codeNumber)
-      .json({ menssagem: userExiste.msg });
+
+    return res.status(201).json(user);
+    
   } catch (error) {
     console.log(error);
     return res
@@ -16,6 +20,8 @@ const deleteByIdController = async (req, res) => {
       .json({ message: "Erro no Servidor" });
   }
 };
+
+
 
 
 const getByIdController = async (req, res) => {
@@ -34,6 +40,9 @@ const getByIdController = async (req, res) => {
 };
 
 
+
+
+
 const getAllController = async (_req, res) => {
   try {
     const users = await UserService.getAllService();
@@ -49,17 +58,21 @@ const getAllController = async (_req, res) => {
   }
 };
 
-const createController = async (req, res) => {
-  try {
-    const user = await UserService.createService(req.body);
-    if (user.erro) {
-      return res
-      .status(user.codeNumber)
-      .json({ menssagem: user.msg });  
-    }
 
-    return res.status(201).json(user);
-    
+
+
+
+
+
+const deleteByIdController = async (req, res) => {
+  try {
+    const userExiste = await UserService.deleteByIdService(req.params);
+    if(userExiste.erro){
+    return res.status(userExiste.codeNumber).json({ menssagem: userExiste.msg });
+    }
+    return res
+      .status(userExiste.codeNumber)
+      .json({ menssagem: userExiste.msg });
   } catch (error) {
     console.log(error);
     return res
