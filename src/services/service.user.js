@@ -48,13 +48,18 @@ const createService = async (user) => {
   }
 };
 
-const deleteByIdService = async (id) =>{
-await UserModel.deleteByIdModel(parseInt(id));
+const deleteByIdService = async (requisicao) =>{
+const { id } = requisicao; 
+const verificaExiste = await UserModel.getByIdModel(id);
+if(verificaExiste){
+  await UserModel.deleteByIdModel(parseInt(id));
+  return {codeNumber:200, msg:'Registro Excluído com sucesso!!'};
+}
+return {erro: true, codeNumber:404, msg:`Delecão falhou ${ id } inexistente` };   
 }
 
 const getAllService = async () => {
   const users = await UserModel.getAllModel();
-  console.log(users);
   if (!users.length ) {
   return {erro: true, codeNumber:404, msg:`não foi encontrado usuaário cadastrados []` }   
   }  

@@ -3,11 +3,13 @@ const { StatusCodes } = require("http-status-codes");
 
 const deleteByIdController = async (req, res) => {
   try {
-    const { id } = req.params;
-    await UserService.deleteByIdService(id);
+    const userExiste = await UserService.deleteByIdService(req.params);
+    if(userExiste.erro){
+    return res.status(userExiste.codeNumber).json({ menssagem: userExiste.msg });
+    }
     return res
-      .status(StatusCodes.OK)
-      .json({ menssagem: "excluído com sucesso" });
+      .status(userExiste.codeNumber)
+      .json({ menssagem: userExiste.msg });
   } catch (error) {
     console.log(error);
     return res
