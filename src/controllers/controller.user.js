@@ -33,11 +33,11 @@ const getByIdController = async (req, res) => {
 
 const getAllController = async (_req, res) => {
   try {
-    const users = await UserService.getAllService(res);
-    if (users) {
-      return res.status(StatusCodes.OK).json(users);
+    const users = await UserService.getAllService();
+    if (users.erro) {
+      return res.status(users.codeNumber).json({menssagem: users.msg});
     }
-    return res.status(StatusCodes.OK).send([]);
+    return res.status(StatusCodes.OK).send(users);
   } catch (error) {
     console.log(error);
     return res
