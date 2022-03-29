@@ -1,5 +1,4 @@
 const UserService = require("../services/service.user");
-const { StatusCodes } = require("http-status-codes");
 
 const deleteByIdController = async (req, res) => {
   try {
@@ -13,10 +12,11 @@ const deleteByIdController = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .status(500)
       .json({ message: "Erro no Servidor" });
   }
 };
+
 
 const getByIdController = async (req, res) => {
   try {
@@ -24,14 +24,15 @@ const getByIdController = async (req, res) => {
     if (user.erro) {
       return res.status(user.codeNumber).json({ menssagem: user.msg });
     }
-    return res.status(StatusCodes.OK).json(user);
+    return res.status(200).json(user);
   } catch (error) {
     console.log(error);
     return res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .status(500)
       .json({ message: "Erro no Servidor" });
   }
 };
+
 
 const getAllController = async (_req, res) => {
   try {
@@ -39,11 +40,11 @@ const getAllController = async (_req, res) => {
     if (users.erro) {
       return res.status(users.codeNumber).json({menssagem: users.msg});
     }
-    return res.status(StatusCodes.OK).send(users);
+    return res.status(200).send(users);
   } catch (error) {
     console.log(error);
     return res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .status(500)
       .json({ message: "Erro no Servidor" });
   }
 };
@@ -51,16 +52,18 @@ const getAllController = async (_req, res) => {
 const createController = async (req, res) => {
   try {
     const user = await UserService.createService(req.body);
-    if (user) {
-      return res.status(StatusCodes.CREATED).json(user);
+    if (user.erro) {
+      return res
+      .status(user.codeNumber)
+      .json({ menssagem: user.msg });  
     }
-    return res
-      .status(StatusCodes.OK)
-      .json({ menssagem: "Não foi possível criar usuário" });
+
+    return res.status(201).json(user);
+    
   } catch (error) {
     console.log(error);
     return res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .status(500)
       .json({ message: "Erro no Servidor" });
   }
 };
