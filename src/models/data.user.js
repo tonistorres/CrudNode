@@ -46,7 +46,7 @@ const getAllModel = async () => {
   const [users] = await connection.execute(
     "SELECT * FROM inovec87_sisseg.tbusuarios"
   );
-  return users;
+ return users;
 };
 
 const getByIdModel = async (id) => {

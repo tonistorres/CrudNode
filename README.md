@@ -117,11 +117,17 @@ git tag -a "nome_tag" -m"" id
 - [x] - MySQL Workbench (Ferramenta Gráfica);
 - [x] - Client que faz a conexão do Node com o Mysql (msql2); 
 - [x] - body-parse;
+- [x] - mocha ^9.2.2;
+- [x] - chai: ^4.3.6; 
+- [x] - sinon: ^13.0.1
 
 ### 3 - Comandos utilizados na instalação:
 
-- [x] - npm i nodemon -D;
-- [Link Pacote Nodemon ](https://duckduckgo.com)
+- [x] - npm install -D nodemon mocha chai sinon;
+- [Link Pacote npm Nodemon ](https://duckduckgo.com)
+- [Link pacote npm Chai](https://www.npmjs.com/package/chai)
+- [Link pacote npm Mocha](https://www.npmjs.com/package/mocha)
+- [Link Pacote npm Sinon](https://www.npmjs.com/package/sinon)
   > Obs.: O D MAIÚSCULO é informa que é uma forma contraída de dizer que é uma Dependência de 
   > Desenvolvimento, ou seja, na hora de subir para a produção essa dependência não tem importancia para 
   > o bom funcionamento da minha aplicação, essa dependencia é somente para testes no momento do 
@@ -179,4 +185,4 @@ git tag -a "nome_tag" -m"" id
 > O End-Point getById foi distribuído em 03(três) camadas (Controller, Service e Model), 
 > seguindo as mesmas métricas acima explicitadas.
 
-![END-POINT CREATE](./getById.gif)
+![END-POINT CREATE](./getById.
