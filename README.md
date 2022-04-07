@@ -203,6 +203,19 @@ git tag -a "nome_tag" -m"" id
 
 ![CRUD NODE/EXPRESS](./jwt.png)
 
+
+##### 4.1.5 End-Point getLogin (Verificar solicitação usuário):
+> O End-Point getLogin foi distribuído em 03(três) camadas (Controller, Service e Model), 
+> sua funcionalidade em fazer uma verificação no DB, se usuário e senha foram inputados de forma
+> satisfatória, então, será gerado um token de autenticação com a validade de 15minutos para ter
+> acesso às rotas que o usuário precisa de autorização.
+
+![END-POINT CREATE](./login.gif)
+
+### ADICIONANDO UMA CAMADA DE SEGURANÇA NA APLICAÇÃO COM JSON WEB TOKEN (JWT):
+
+![CRUD NODE/EXPRESS](./jwt.png)
+
 ##### O QUE É JWT? 
 
 > Json Web Token, é um padrão para autenticação e troca de informações, definido pela RFC7519. De forma bastante
