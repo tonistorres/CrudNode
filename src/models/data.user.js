@@ -54,14 +54,15 @@ const getByIdModel = async (id) => {
   return user[0];
 }
 
-
-
-
-
-
 const deleteByIdModel = async (id) => {
   await connection.execute('DELETE FROM tbusuarios WHERE iduser = ?', [id]);
 }
+
+const updateModelUser = async ( login, senha, usuario, banco_dados, url, celular_principal, CPF, email_principal, perfil, id) => {
+  await connection.execute(`UPDATE tbusuarios SET login = ?, senha = ?, usuario = ?, banco_dados = ?, url = ?, celular_principal = ?, CPF = ?, email_principal = ?, perfil = ? WHERE iduser = ?`,
+      [ login, senha, usuario, banco_dados, url, celular_principal, CPF, email_principal, perfil, id])
+  return {login, senha, usuario, banco_dados, url, celular_principal, CPF, email_principal, perfil, id };
+};
 
 
 module.exports = {
@@ -69,5 +70,6 @@ module.exports = {
   createModel,
   deleteByIdModel,
   getByIdModel,
+  updateModelUser,
 };
 

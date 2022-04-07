@@ -185,4 +185,4 @@ git tag -a "nome_tag" -m"" id
 > O End-Point getById foi distribuído em 03(três) camadas (Controller, Service e Model), 
 > seguindo as mesmas métricas acima explicitadas.
 
-![END-POINT CREATE](./getById.
+![END-POINT CREATE](./getById.gif)
