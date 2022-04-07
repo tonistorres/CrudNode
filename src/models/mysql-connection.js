@@ -1,14 +1,12 @@
-/** Criando uma classe de conexão, Ponte do node com Gerenciador
- * de Banco de dados mysql
-  */
 const mysql = require('mysql2/promise');
+require('dotenv').config();
 
 const connection = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  database: 'inovec87_sisseg',
-  password:'8Hyy+-XqcH8$c#-',
-  port:'3306'
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  database: process.env.MYSQL_DB,
+  password:process.env.MYSQL_PASSWORD,
+  port:process.env.MYSQL_PORT
 });
 
 module.exports = { connection }

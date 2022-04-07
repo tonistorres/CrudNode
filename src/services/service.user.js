@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const UserModel = require("../models/data.user");
 const {
   loginPolido,
@@ -177,24 +178,24 @@ const getLoginService = async (user) => {
 
   try {
     console.log(user.login, user.senha);
-    const SECRET = 'XABLAU'; 
+    const SECRET = process.env.SECRET; 
 
     const jwtConfig = {
     expiresIn: '15m',
     algorithm: 'HS256',
     }
     
-    const autorization = await UserModel.getByLoginModel({login:user.login, senha:user.senha});
-    console.log(autorization);
-    if(!autorization){
+    const autthorization = await UserModel.getByLoginModel({login:user.login, senha:user.senha});
+    console.log(autthorization);
+    if(!autthorization){
       return {
         erro: true,
         codeNumber: 404,
-        msg: `User not Autorization !!`,
+        msg: `User not authorization !!`,
       };
     }
     
-    const {iduser, login} = autorization;
+    const {iduser, login} = autthorization;
     const token = jwt.sign({id:iduser, senha:login},SECRET,jwtConfig);
     return token;
   
