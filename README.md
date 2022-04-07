@@ -1,5 +1,5 @@
 ![CRUD NODE/EXPRESS](./crud.jpg)
-## Projeto de uma Aplicação(API) Back-End (CRUD) - seguindo as métricas de engenharia de software:
+## Projeto de uma Aplicação(API) Back-End (CRUD) - seguindo as métricas de engenharia de software (MSC):
 
 ### o que é uma API?
 > Uma API é um conjunto de rotinas, protocolos e ferramentas para construir aplicações.
@@ -168,14 +168,16 @@ git tag -a "nome_tag" -m"" id
 
 ##### 4.1.2 End-Point delete:
 > O End-Point delete foi distribuído em 03(três) camadas (Controller, Service e Model), 
-> seguindo as mesmas diretrizes e responsabilidades do end-point create acima explicitado.
+> sua funcionalidade consiste em apagar do banco de dados um registro específico mediante
+> requisição passada pela url (req.params).
 
 ![END-POINT CREATE](./delete.gif)
 
 
 ##### 4.1.2 End-Point getAll (buscar por todos registros):
 > O End-Point getAll foi distribuído em 03(três) camadas (Controller, Service e Model), 
-> seguindo as mesmas métricas acima explicitadas.
+> sua funcionalidade consiste em buscar todos os registros do banco de dados mediante
+> requisição passada pela url (req).
 
 ![END-POINT CREATE](./getAll.gif)
 
@@ -183,6 +185,15 @@ git tag -a "nome_tag" -m"" id
 
 ##### 4.1.3 End-Point getById (buscar um registros específico):
 > O End-Point getById foi distribuído em 03(três) camadas (Controller, Service e Model), 
-> seguindo as mesmas métricas acima explicitadas.
+> sua funcionalidade consiste em buscar no banco de dados um usuário específico mediante
+> requisição passsada por url (req.params).
 
 ![END-POINT CREATE](./getById.gif)
+
+
+##### 4.1.4 End-Point getUpdate (Alterar um Registro Específico):
+> O End-Point getUpdate foi distribuído em 03(três) camadas (Controller, Service e Model), 
+> sua funcionalidade consiste em fazer atualização das informaçẽos do usuário mediante, 
+> mediante requisição enviada pelo (req.body).
+
+![END-POINT CREATE](./update.gif)
