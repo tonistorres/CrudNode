@@ -102,10 +102,27 @@ const updateModelUser = async (
   };
 };
 
+
+const getByLoginModel = async ({login, senha}) => {
+  const [user] = await connection.execute(`SELECT * FROM 
+  inovec87_sisseg.tbusuarios WHERE login = ? AND senha = ?`, [login, senha]);
+  // console.log(user[0]);
+  return user[0];
+};
+
+
+// async function main(){
+// await getByLoginModel({login: 'DATORRES', senha:'XABLAU'})
+// }
+
+// main();
+
+
 module.exports = {
   getAllModel,
   createModel,
   deleteByIdModel,
   getByIdModel,
   updateModelUser,
+  getByLoginModel,
 };

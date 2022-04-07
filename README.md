@@ -120,6 +120,7 @@ git tag -a "nome_tag" -m"" id
 - [x] - mocha ^9.2.2;
 - [x] - chai: ^4.3.6; 
 - [x] - sinon: ^13.0.1
+  
 
 ### 3 - Comandos utilizados na instalação:
 
@@ -197,3 +198,34 @@ git tag -a "nome_tag" -m"" id
 > mediante requisição enviada pelo (req.body).
 
 ![END-POINT CREATE](./update.gif)
+
+### ADICIONANDO UMA CAMADA DE SEGURANÇA NA APLICAÇÃO COM JSON WEB TOKEN (JWT):
+
+![CRUD NODE/EXPRESS](./jwt.png)
+
+##### O QUE É JWT? 
+
+> Json Web Token, é um padrão para autenticação e troca de informações, definido pela RFC7519. De forma bastante
+> resumida, consiste em um conjunto de solicitações. O JWT se faz essencial por ser uma forma extremamente segura
+> de compartilhamento de informações e autenticação de usuários. É um formato baseado em texto e amplamente aceito 
+> por diversas linguagens, característica que carrega por utilizar JSON como base.
+
+> Esse é o grande diferencial do JWT em relação a outras opções, pois o JSON é um padrão mais vantajoso de troca e
+> armazenamento de informação. Alguns dos concorrentes são o SWT (Simple Web Tokens) e o SAML (Security Assertion 
+> Markup Language Tokens), que usa o padrão XML.
+
+> O JWT é, na verdade, um dos elementos de uma estrutura ainda maior, o JOSE (Json Object Signing and Encryption). 
+> No JOSE, estão contidas várias outras especificações. São elas: o JWE (Json Web Encryption), responsável pela 
+> criptografia para a assinatura do token; o JWA (Json Web Algorithms), a respeito do algoritmo; JWK (Json Web Keys)
+> , correspondente as chaves para assinatura; JWS (Json Web Signature), a assinatura do token. Por fim, o JWT, 
+> elemento JOSE, é o token em si
+> [Fonte: Blog Trybe ](https://blog.betrybe.com/tecnologia/jwt-json-web-tokens/);
+
+
+### Configurando ambiente para receber JWT:
+
+- [x] - Primeiro iremos instalar o pacote npm jsonwebtoken;
+
+```console 
+npm install jsonwebtoken
+```

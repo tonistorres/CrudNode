@@ -91,10 +91,31 @@ const updateController = async (req, res) => {
 };
 
 
+const getLoginController = async (req, res) => {
+  try {
+    const user = await UserService.getLoginService(req.body);
+    if (user.erro) {
+      return res
+      .status(user.codeNumber)
+      .json({ menssagem: user.msg });  
+    }
+
+    return res.status(200).json(user);
+    
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "Erro no Servidor" });
+  }
+};
+
+
 module.exports = {
   getAllController,
   createController,
   deleteByIdController,
   getByIdController,
   updateController,
+  getLoginController,
 };
