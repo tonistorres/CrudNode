@@ -229,3 +229,8 @@ git tag -a "nome_tag" -m"" id
 ```console 
 npm install jsonwebtoken
 ```
+- [x] - Instalando dotenv para trabalharmos com vaiáveis de ambiente;
+
+```console 
+npm i dotenv
+```
