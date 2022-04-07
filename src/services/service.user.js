@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const UserModel = require("../models/data.user");
 const {
   loginPolido,
@@ -171,10 +172,42 @@ const updateService = async (user) => {
   }
 };
 
+const getLoginService = async (user) => {
+ 
+
+  try {
+    console.log(user.login, user.senha);
+    const SECRET = 'XABLAU'; 
+
+    const jwtConfig = {
+    expiresIn: '15m',
+    algorithm: 'HS256',
+    }
+    
+    const autorization = await UserModel.getByLoginModel({login:user.login, senha:user.senha});
+    console.log(autorization);
+    if(!autorization){
+      return {
+        erro: true,
+        codeNumber: 404,
+        msg: `User not Autorization !!`,
+      };
+    }
+    
+    const {iduser, login} = autorization;
+    const token = jwt.sign({id:iduser, senha:login},SECRET,jwtConfig);
+    return token;
+  
+  } catch (error) {
+    return { error: 500, message: "Erro no Servidor" };
+  }
+};
+
 module.exports = {
   getAllService,
   createService,
   deleteByIdService,
   getByIdService,
   updateService,
+  getLoginService,
 };

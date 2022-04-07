@@ -1,5 +1,5 @@
 ![CRUD NODE/EXPRESS](./crud.jpg)
-## Projeto de uma Aplicação(API) Back-End (CRUD) - seguindo as métricas de engenharia de software:
+## Projeto de uma Aplicação(API) Back-End (CRUD) - seguindo as métricas de engenharia de software (MSC):
 
 ### o que é uma API?
 > Uma API é um conjunto de rotinas, protocolos e ferramentas para construir aplicações.
@@ -120,6 +120,7 @@ git tag -a "nome_tag" -m"" id
 - [x] - mocha ^9.2.2;
 - [x] - chai: ^4.3.6; 
 - [x] - sinon: ^13.0.1
+  
 
 ### 3 - Comandos utilizados na instalação:
 
@@ -168,14 +169,16 @@ git tag -a "nome_tag" -m"" id
 
 ##### 4.1.2 End-Point delete:
 > O End-Point delete foi distribuído em 03(três) camadas (Controller, Service e Model), 
-> seguindo as mesmas diretrizes e responsabilidades do end-point create acima explicitado.
+> sua funcionalidade consiste em apagar do banco de dados um registro específico mediante
+> requisição passada pela url (req.params).
 
 ![END-POINT CREATE](./delete.gif)
 
 
 ##### 4.1.2 End-Point getAll (buscar por todos registros):
 > O End-Point getAll foi distribuído em 03(três) camadas (Controller, Service e Model), 
-> seguindo as mesmas métricas acima explicitadas.
+> sua funcionalidade consiste em buscar todos os registros do banco de dados mediante
+> requisição passada pela url (req).
 
 ![END-POINT CREATE](./getAll.gif)
 
@@ -183,6 +186,46 @@ git tag -a "nome_tag" -m"" id
 
 ##### 4.1.3 End-Point getById (buscar um registros específico):
 > O End-Point getById foi distribuído em 03(três) camadas (Controller, Service e Model), 
-> seguindo as mesmas métricas acima explicitadas.
+> sua funcionalidade consiste em buscar no banco de dados um usuário específico mediante
+> requisição passsada por url (req.params).
 
 ![END-POINT CREATE](./getById.gif)
+
+
+##### 4.1.4 End-Point getUpdate (Alterar um Registro Específico):
+> O End-Point getUpdate foi distribuído em 03(três) camadas (Controller, Service e Model), 
+> sua funcionalidade consiste em fazer atualização das informaçẽos do usuário mediante, 
+> mediante requisição enviada pelo (req.body).
+
+![END-POINT CREATE](./update.gif)
+
+### ADICIONANDO UMA CAMADA DE SEGURANÇA NA APLICAÇÃO COM JSON WEB TOKEN (JWT):
+
+![CRUD NODE/EXPRESS](./jwt.png)
+
+##### O QUE É JWT? 
+
+> Json Web Token, é um padrão para autenticação e troca de informações, definido pela RFC7519. De forma bastante
+> resumida, consiste em um conjunto de solicitações. O JWT se faz essencial por ser uma forma extremamente segura
+> de compartilhamento de informações e autenticação de usuários. É um formato baseado em texto e amplamente aceito 
+> por diversas linguagens, característica que carrega por utilizar JSON como base.
+
+> Esse é o grande diferencial do JWT em relação a outras opções, pois o JSON é um padrão mais vantajoso de troca e
+> armazenamento de informação. Alguns dos concorrentes são o SWT (Simple Web Tokens) e o SAML (Security Assertion 
+> Markup Language Tokens), que usa o padrão XML.
+
+> O JWT é, na verdade, um dos elementos de uma estrutura ainda maior, o JOSE (Json Object Signing and Encryption). 
+> No JOSE, estão contidas várias outras especificações. São elas: o JWE (Json Web Encryption), responsável pela 
+> criptografia para a assinatura do token; o JWA (Json Web Algorithms), a respeito do algoritmo; JWK (Json Web Keys)
+> , correspondente as chaves para assinatura; JWS (Json Web Signature), a assinatura do token. Por fim, o JWT, 
+> elemento JOSE, é o token em si
+> [Fonte: Blog Trybe ](https://blog.betrybe.com/tecnologia/jwt-json-web-tokens/);
+
+
+### Configurando ambiente para receber JWT:
+
+- [x] - Primeiro iremos instalar o pacote npm jsonwebtoken;
+
+```console 
+npm install jsonwebtoken
+```

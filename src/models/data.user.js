@@ -46,23 +46,76 @@ const getAllModel = async () => {
   const [users] = await connection.execute(
     "SELECT * FROM inovec87_sisseg.tbusuarios"
   );
- return users;
+  return users;
 };
 
 const getByIdModel = async (id) => {
-  const [user] = await connection.execute('SELECT * FROM inovec87_sisseg.tbusuarios WHERE iduser = ?', [id]);
+  const [user] = await connection.execute(
+    "SELECT * FROM inovec87_sisseg.tbusuarios WHERE iduser = ?",
+    [id]
+  );
   return user[0];
-}
+};
 
 const deleteByIdModel = async (id) => {
-  await connection.execute('DELETE FROM tbusuarios WHERE iduser = ?', [id]);
-}
-
-const updateModelUser = async ( login, senha, usuario, banco_dados, url, celular_principal, CPF, email_principal, perfil, id) => {
-  await connection.execute(`UPDATE tbusuarios SET login = ?, senha = ?, usuario = ?, banco_dados = ?, url = ?, celular_principal = ?, CPF = ?, email_principal = ?, perfil = ? WHERE iduser = ?`,
-      [ login, senha, usuario, banco_dados, url, celular_principal, CPF, email_principal, perfil, id])
-  return {login, senha, usuario, banco_dados, url, celular_principal, CPF, email_principal, perfil, id };
+  await connection.execute("DELETE FROM tbusuarios WHERE iduser = ?", [id]);
 };
+
+const updateModelUser = async (
+  login,
+  senha,
+  usuario,
+  banco_dados,
+  url,
+  celular_principal,
+  CPF,
+  email_principal,
+  perfil,
+  id
+) => {
+  await connection.execute(
+    `UPDATE tbusuarios SET login = ?, senha = ?, usuario = ?, banco_dados = ?, url = ?, celular_principal = ?, CPF = ?, email_principal = ?, perfil = ? WHERE iduser = ?`,
+    [
+      login,
+      senha,
+      usuario,
+      banco_dados,
+      url,
+      celular_principal,
+      CPF,
+      email_principal,
+      perfil,
+      id,
+    ]
+  );
+  return {
+    login,
+    senha,
+    usuario,
+    banco_dados,
+    url,
+    celular_principal,
+    CPF,
+    email_principal,
+    perfil,
+    id,
+  };
+};
+
+
+const getByLoginModel = async ({login, senha}) => {
+  const [user] = await connection.execute(`SELECT * FROM 
+  inovec87_sisseg.tbusuarios WHERE login = ? AND senha = ?`, [login, senha]);
+  // console.log(user[0]);
+  return user[0];
+};
+
+
+// async function main(){
+// await getByLoginModel({login: 'DATORRES', senha:'XABLAU'})
+// }
+
+// main();
 
 
 module.exports = {
@@ -71,5 +124,5 @@ module.exports = {
   deleteByIdModel,
   getByIdModel,
   updateModelUser,
+  getByLoginModel,
 };
-
