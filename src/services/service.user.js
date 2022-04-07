@@ -1,5 +1,8 @@
 const UserModel = require("../models/data.user");
-const { loginPolido, senhaPolida } = require("../validations/validation.service.user");
+const {
+  loginPolido,
+  senhaPolida,
+} = require("../validations/validation.service.user");
 const { validarCPF } = require("../util/validaCPF");
 const {
   refinandoStringsDB,
@@ -25,46 +28,60 @@ const createService = async (user) => {
     } = user;
     const loginValidado = loginPolido(login);
 
-    if(loginValidado.erro) {
-      return {erro:loginValidado.erro, codeNumber: loginValidado.codeNumber,
-        msg: loginValidado.msg, }
+    if (loginValidado.erro) {
+      return {
+        erro: loginValidado.erro,
+        codeNumber: loginValidado.codeNumber,
+        msg: loginValidado.msg,
+      };
     }
     const senhaValidada = senhaPolida(senha);
-    if(senhaValidada.erro) { 
-      return {erro:senhaValidada.erro, codeNumber: senhaValidada.codeNumber,
-       msg: senhaValidada.msg, }
+    if (senhaValidada.erro) {
+      return {
+        erro: senhaValidada.erro,
+        codeNumber: senhaValidada.codeNumber,
+        msg: senhaValidada.msg,
+      };
     }
     const usuarioTratado = retiraEspacosMultiplosFixaOne(usuario);
-    const bancoDBTratado = retiraTodosEspacosEntrePalavras(refiandoStringDBtoLowerCase(banco_dados));
-    const urlTratada = retiraTodosEspacosEntrePalavras(refiandoStringDBtoLowerCase(url));
-    const emailTratado = retiraTodosEspacosEntrePalavras(refiandoStringDBtoLowerCase(email_principal));
-    const perfilTratado = slugify(retiraTodosEspacosEntrePalavras(refinandoStringsDB(perfil)));
+    const bancoDBTratado = retiraTodosEspacosEntrePalavras(
+      refiandoStringDBtoLowerCase(banco_dados)
+    );
+    const urlTratada = retiraTodosEspacosEntrePalavras(
+      refiandoStringDBtoLowerCase(url)
+    );
+    const emailTratado = retiraTodosEspacosEntrePalavras(
+      refiandoStringDBtoLowerCase(email_principal)
+    );
+    const perfilTratado = slugify(
+      retiraTodosEspacosEntrePalavras(refinandoStringsDB(perfil))
+    );
     const cpfValidado = validarCPF(CPF);
-    
-    if(cpfValidado.erro) { 
-      return {erro:cpfValidado.erro, codeNumber: cpfValidado.codeNumber,
-       msg: cpfValidado.msg,}
+
+    if (cpfValidado.erro) {
+      return {
+        erro: cpfValidado.erro,
+        codeNumber: cpfValidado.codeNumber,
+        msg: cpfValidado.msg,
+      };
     }
 
-      const created = await UserModel.createModel({
-        loginValidado,
-        senhaValidada,
-        usuarioTratado,
-        bancoDBTratado,
-        urlTratada,
-        celular_principal,
-        cpfValidado,
-        emailTratado,
-        perfilTratado,
-      });
-      return created;
-
+    const created = await UserModel.createModel({
+      loginValidado,
+      senhaValidada,
+      usuarioTratado,
+      bancoDBTratado,
+      urlTratada,
+      celular_principal,
+      cpfValidado,
+      emailTratado,
+      perfilTratado,
+    });
+    return created;
   } catch (error) {
     console.log(error);
   }
 };
-
-
 
 const deleteByIdService = async (requisicao) => {
   const { id } = requisicao;
@@ -85,9 +102,6 @@ const deleteByIdService = async (requisicao) => {
   };
 };
 
-
-
-
 const getAllService = async () => {
   const users = await UserModel.getAllModel();
   if (!users.length) {
@@ -99,10 +113,6 @@ const getAllService = async () => {
   }
   return users;
 };
-
-
-
-
 
 const getByIdService = async (requisicao) => {
   const { id } = requisicao;
@@ -122,13 +132,49 @@ const getByIdService = async (requisicao) => {
   };
 };
 
+const updateService = async (user) => {
+  try {
+    const {
+      id,
+      login,
+      senha,
+      usuario,
+      banco_dados,
+      url,
+      celular_principal,
+      CPF,
+      email_principal,
+      perfil,
+    } = user;
 
+    const exist = await UserModel.getByIdModel(id);
 
+    if (!exist) {
+      return { erro: true, status: 404, message: "User not Exist" };
+    }
 
+    const updated = await UserModel.updateModelUser(
+      login,
+      senha,
+      usuario,
+      banco_dados,
+      url,
+      celular_principal,
+      CPF,
+      email_principal,
+      perfil,
+      id
+    );
+    return updated;
+  } catch (error) {
+    return { error: 500, message: "Erro no Servidor" };
+  }
+};
 
 module.exports = {
   getAllService,
   createService,
   deleteByIdService,
   getByIdService,
+  updateService,
 };
