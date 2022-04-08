@@ -281,7 +281,8 @@ npm install mysql2
 ## Iniciando os trabalhos com Sequelize 
 
 1 - iniciando um projeto com Sequelize
-[x] npx sequelize-cli init
+
+- [x]  npx sequelize-cli init
 
 ```console
 Esse comando irá criar as seguintes pastas:
@@ -291,10 +292,10 @@ migrations : contém todos os arquivos de migração da nossa aplicação;
 seeders : contém todos os arquivos de "seeds" (sementes que são usadas para popular o banco).
 ```
 2 - vamos instalar a biblioteca dotenv para trabalharmos com variáveis de ambiente 
-[x] - npm i dotenv
+- [x]  npm i dotenv
 
 3 - agora iremos criar arquivo .gitignore e definiar que não iremos subir para o github o .env e node_modules/  
-[x] .gitignore
+- [x]  .gitignore
 
 4 - Entrar no arquivo config.json e configurar as chaves que fazer acesso ao seu banco de dados mysql
 
@@ -315,7 +316,7 @@ seeders : contém todos os arquivos de "seeds" (sementes que são usadas para po
 
 
 5 - Criando o banco de dados já predefinido no arquivo config.json 
-[x] - npx sequelize db:create
+- [x]  npx sequelize db:create
 
 ```console
 Loaded configuration file "config/config.json".
