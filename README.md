@@ -199,10 +199,6 @@ git tag -a "nome_tag" -m"" id
 
 ![END-POINT CREATE](./update.gif)
 
-### ADICIONANDO UMA CAMADA DE SEGURANÇA NA APLICAÇÃO COM JSON WEB TOKEN (JWT):
-
-![CRUD NODE/EXPRESS](./jwt.png)
-
 
 ##### 4.1.5 End-Point getLogin (Verificar solicitação usuário):
 > O End-Point getLogin foi distribuído em 03(três) camadas (Controller, Service e Model), 
@@ -214,7 +210,7 @@ git tag -a "nome_tag" -m"" id
 
 ### ADICIONANDO UMA CAMADA DE SEGURANÇA NA APLICAÇÃO COM JSON WEB TOKEN (JWT):
 
-![CRUD NODE/EXPRESS](./jwt.png)
+![json web token](./jwt.png)
 
 ##### O QUE É JWT? 
 
@@ -247,3 +243,19 @@ npm install jsonwebtoken
 ```console 
 npm i dotenv
 ```
+
+### Adicionando ORM Sequelize ao Projeto 
+![ORM Sequelize](./sequelize.jpeg)
+
+#### O que é ORM?
+
+> O Sequelize é um ORM (Object-Relational Mapper)
+> para Node.js, que tem suporte aos bancos de dados
+> PostgreSQL, MariaDB, MySQL, SQLite e MSSQL, como 
+> ORM ele faz o mapeamento de dados relacionais 
+> (tabelas, colunas e linhas) para objetos 
+> Javascript.
+
+[Fonte: Blog Rocketseat ](https://blog.rocketseat.com.br/nodejs-express-sequelize/);
+
+#### Preparando o ambiente para instalação do Sequelize:
