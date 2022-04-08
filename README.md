@@ -199,10 +199,6 @@ git tag -a "nome_tag" -m"" id
 
 ![END-POINT CREATE](./update.gif)
 
-### ADICIONANDO UMA CAMADA DE SEGURANÇA NA APLICAÇÃO COM JSON WEB TOKEN (JWT):
-
-![CRUD NODE/EXPRESS](./jwt.png)
-
 
 ##### 4.1.5 End-Point getLogin (Verificar solicitação usuário):
 > O End-Point getLogin foi distribuído em 03(três) camadas (Controller, Service e Model), 
@@ -214,7 +210,7 @@ git tag -a "nome_tag" -m"" id
 
 ### ADICIONANDO UMA CAMADA DE SEGURANÇA NA APLICAÇÃO COM JSON WEB TOKEN (JWT):
 
-![CRUD NODE/EXPRESS](./jwt.png)
+![json web token](./jwt.png)
 
 ##### O QUE É JWT? 
 
@@ -247,3 +243,149 @@ npm install jsonwebtoken
 ```console 
 npm i dotenv
 ```
+
+### Adicionando ORM Sequelize ao Projeto 
+![ORM Sequelize](./sequelize.jpeg)
+
+#### O que é ORM?
+
+> O Sequelize é um ORM (Object-Relational Mapper)
+> para Node.js, que tem suporte aos bancos de dados
+> PostgreSQL, MariaDB, MySQL, SQLite e MSSQL, como 
+> ORM ele faz o mapeamento de dados relacionais 
+> (tabelas, colunas e linhas) para objetos 
+> Javascript.
+
+[Fonte: Blog Rocketseat ](https://blog.rocketseat.com.br/nodejs-express-sequelize/);
+
+#### Preparando o ambiente para instalação do Sequelize:
+
+1 - instalação do ORM sequelize
+
+```console
+npm install sequelize   
+```
+
+2- instalar um cliente responsável por gerar e executar operações 
+
+```console
+npm install sequelize-cli
+```
+
+3- instalar o mysql2 necessário para fazer a conexão entre o MYSQL e Node
+
+```console
+npm install mysql2
+```
+
+## Iniciando os trabalhos com Sequelize 
+
+1 - iniciando um projeto com Sequelize
+[x] npx sequelize-cli init
+
+```console
+Esse comando irá criar as seguintes pastas:
+config : contém um arquivo de configuração, com orientações para o CLI se conectar com o nosso banco de dados;
+models : contém todos os modelos da nossa aplicação;
+migrations : contém todos os arquivos de migração da nossa aplicação;
+seeders : contém todos os arquivos de "seeds" (sementes que são usadas para popular o banco).
+```
+2 - vamos instalar a biblioteca dotenv para trabalharmos com variáveis de ambiente 
+[x] - npm i dotenv
+
+3 - agora iremos criar arquivo .gitignore e definiar que não iremos subir para o github o .env e node_modules/  
+[x] .gitignore
+
+4 - Entrar no arquivo config.json e configurar as chaves que fazer acesso ao seu banco de dados mysql
+
+```console
+{
+  "development": {
+    "username": "root",
+    "password": "",
+    "database": "orm_example",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+
+```
+
+> OBSERVAÇÃO: adicionar o a pasta config/config.json ao .gitignore para que informações sensívei não subam para o 
+> github.
+
+
+5 - Criando o banco de dados já predefinido no arquivo config.json 
+[x] - npx sequelize db:create
+
+```console
+Loaded configuration file "config/config.json".
+Using environment "development".
+Database dbuser created.
+```
+
+6 - verirfique no seu CLI Mysql se o banco foi criado
+
+```console
+
+Execute o comando no terminal:
+mysql -u root -p
+
+coloque sua senha de acesso ao mysql: 
+passord: xxxx
+
+Dentro do banco execute  o comando abaixo para listar todas db:
+show databases;
+
+```
+
+7 - Criando uma tabela User dentro de (model) com um atributo por nome fullName e 
+uma migration com uma copia da tabela criada:
+
+```console
+npx sequelize model:generate --name User --attributes fullName:string
+```
+#### Observação:
+> O arquivo user.js criado na pasta (model) está mapeando a tabela utilizando classe,
+> ou seja, usando POO (Paradigma da Orientação Objeto), porém, nesse momento estamos 
+> usando programação funcioal daí iremo converter todo conteúdo criando em classe para 
+> função.
+
+8 - Para executarmos um migrations de forma ela executar uma operação no banco de dados 
+utilizamos o CLI Sequelize instalados com o abaixo explicitado que ela irá fazer alterações 
+na tabela do banco de dados setando no arquivo config.json
+
+```console 
+    npx sequelize db:migrate
+```
+
+9 - Caso queira reverter uma migrations utilize o comando abaixo: 
+
+```console 
+npx sequelize db:migrate:undo
+```
+
+10 - Criar uma migrations para adicionarmos um campo numa tabel já criada:
+
+```console 
+npx sequelize migration:generate --name add-column-phone-table-users
+```
+##### O corpo da migrations ficará da seguinte forma:
+
+```javascript 
+
+'use strict';
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.addColumn('Users', 'phone_num', {
+      type: Sequelize.STRING,
+    });
+   },
+ 
+   down: async (queryInterface, Sequelize) => {
+     await queryInterface.removeColumn('Users', 'phone_num');
+   }
+};
+
+```
+
