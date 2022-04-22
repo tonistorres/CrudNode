@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const UserModel = require("../models/data.user");
+const UserModelSequelize = require('../models/user');
 const {
   loginPolido,
   senhaPolida,
@@ -104,8 +105,9 @@ const deleteByIdService = async (requisicao) => {
   };
 };
 
+// utilizando Sequelize
 const getAllService = async () => {
-  const users = await UserModel.getAllModel();
+  const users = await UserModelSequelize.findAll();
   if (!users.length) {
     return {
       erro: true,
@@ -118,9 +120,7 @@ const getAllService = async () => {
 
 const getByIdService = async (requisicao) => {
   const { id } = requisicao;
-
   const verificaExiste = await UserModel.getByIdModel(id);
-
   if (verificaExiste) {
     const user = await UserModel.getByIdModel(parseInt(id));
     if (user) {
@@ -148,13 +148,10 @@ const updateService = async (user) => {
       email_principal,
       perfil,
     } = user;
-
     const exist = await UserModel.getByIdModel(id);
-
     if (!exist) {
       return { erro: true, status: 404, message: "User not Exist" };
     }
-
     const updated = await UserModel.updateModelUser(
       login,
       senha,
@@ -174,17 +171,13 @@ const updateService = async (user) => {
 };
 
 const getLoginService = async (user) => {
- 
-
-  try {
+   try {
     console.log(user.login, user.senha);
     const SECRET = process.env.SECRET; 
-
     const jwtConfig = {
     expiresIn: '15m',
     algorithm: 'HS256',
     }
-    
     const autthorization = await UserModel.getByLoginModel({login:user.login, senha:user.senha});
     console.log(autthorization);
     if(!autthorization){
@@ -194,11 +187,9 @@ const getLoginService = async (user) => {
         msg: `User not authorization !!`,
       };
     }
-    
     const {iduser, login} = autthorization;
     const token = jwt.sign({id:iduser, senha:login},SECRET,jwtConfig);
     return token;
-  
   } catch (error) {
     return { error: 500, message: "Erro no Servidor" };
   }
